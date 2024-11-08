@@ -32,5 +32,6 @@ console.log(Person.prototype.constructor === Person);
 /*
   Outputs: true
 
-  Explanation: The constructor property of Person.prototype points back to Person.
+  Explanation: The constructor property of Person.prototype points 
+    back to Person.
 */

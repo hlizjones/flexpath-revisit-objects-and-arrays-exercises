@@ -18,7 +18,7 @@ function createLeak() {
   };
 }
 
-const leakyFunction = createLeak();
+let leakyFunction = createLeak();
 
 // leakyFunction holds a reference to largeArray through closure
 // Even if we don't use leakyFunction, largeArray remains in memory
