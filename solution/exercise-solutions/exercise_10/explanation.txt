@@ -1,0 +1,6 @@
+Explanation:
+
+The *[Symbol.iterator]() defines a generator function that implements the iterator protocol.
+Using yield, it returns each number multiplied by 2.
+This allows the object to be iterable with for...of.
+Generators provide an elegant way to create custom iterators.
