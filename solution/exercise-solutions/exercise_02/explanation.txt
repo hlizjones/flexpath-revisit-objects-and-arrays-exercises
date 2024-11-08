@@ -1,0 +1,9 @@
+
+Explanation:
+
+dog is created with animal as its prototype using Object.create.
+
+dog overrides the speak method.
+
+The prototype chain allows dog to inherit properties and 
+methods from animal unless overridden.

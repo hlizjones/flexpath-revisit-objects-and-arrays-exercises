@@ -1,0 +1,10 @@
+Explanation:
+
+Array.prototype is extended using Object.defineProperty.
+
+The last method returns the last element.
+
+The method is set to non-enumerable to prevent interference with iteration over arrays.
+
+Ensuring non-enumerability avoids conflicts with code that relies on the 
+default behavior of arrays.

@@ -1,0 +1,6 @@
+
+Exercise 5: Understanding the Prototype Chain
+
+Problem:
+
+Given the following code, explain the output of each console.log statement:
