@@ -1,0 +1,9 @@
+
+Exercise 16: Customizing Property Descriptors
+
+Problem:
+
+Create an object data with a property items that is an array. 
+
+Use Object.defineProperty to make items read-only and prevent it from 
+being deleted, but allow the array's content to be modified.

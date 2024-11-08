@@ -1,0 +1,6 @@
+Explanation:
+
+writable: false prevents reassignment of data.items.
+configurable: false prevents deletion of data.items.
+Since the value is an array, its contents can still be modified.
+This allows controlled mutability.

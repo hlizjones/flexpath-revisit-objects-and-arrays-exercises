@@ -1,0 +1,6 @@
+Explanation:
+
+The balance variable is private to the BankAccount constructor function.
+Methods deposit, withdraw, and getBalance form closures over balance.
+The balance cannot be accessed or modified directly from outside.
+This encapsulation protects the internal state of the object.

@@ -1,0 +1,6 @@
+Explanation:
+
+userPrototype contains methods shared by all users.
+createUser creates a new object with userPrototype as its prototype.
+name is set directly on the object, while methods are shared.
+This is memory-efficient as methods are not duplicated per instance.
