@@ -5,9 +5,10 @@ Problem:
 
 Demonstrate the difference between Object.freeze and Object.seal. 
 
-Create an object config and:
+Create an object `config` and:
 
 1. Use Object.seal on it, then try to add, modify, and delete properties.
-2. Use Object.freeze on another object settings, and attempt the same operations.
+2. Use Object.freeze on another object `settings`, and 
+	 attempt the same operations.
 
 Explain the outcomes.

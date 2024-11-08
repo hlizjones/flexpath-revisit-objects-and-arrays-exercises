@@ -37,3 +37,18 @@ delete settings.version; // Fails silently
 console.log(settings);
 // Outputs:
 // { theme: 'dark', version: 1.0 }
+
+/*
+  Explanation:
+
+  Object.seal prevents adding or deleting properties but 
+    allows modification of existing properties.
+
+  Object.freeze prevents adding, deleting, or modifying properties.
+
+  Both methods make the object's property configuration non-configurable.
+
+  In non-strict mode, operations that fail do so silently; 
+    in strict mode, they throw errors.
+
+*/

@@ -45,3 +45,16 @@ console.log("Withdrawals:", result.withdrawals);
 // Outputs:
 // [{ type: 'withdrawal', amount: 50 },
 //  { type: 'withdrawal', amount: 80 }]
+
+/*
+  Explanation:
+
+  reduce is used to accumulate values into a single object.
+  
+  The accumulator acc contains the balance and categorized transactions.
+
+  Each transaction updates the balance and the appropriate array.
+
+  The initial value for reduce is an object with 
+    starting balance and empty arrays.
+*/
