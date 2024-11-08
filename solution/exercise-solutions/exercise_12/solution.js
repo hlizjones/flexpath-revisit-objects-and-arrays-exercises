@@ -1,40 +1,43 @@
-const counter = {
-  _count: 0,
-};
+/*
+	Explanation:
 
-Object.defineProperty(counter, "count", {
-  get() {
-    return this._count;
-  },
-  set(value) {
-    if (value >= this._count) {
-      this._count = value;
-    } else {
-      throw new Error("Cannot decrease count");
-    }
-  },
-});
+	Stack: 
+		Used for static memory allocation and 
+		execution context (primitive values and function calls).
 
-// Testing
-counter.count = 5;
-console.log(counter.count); // Outputs: 5
+	Heap: 
+		Used for dynamic memory allocation (objects, arrays, functions).
 
-counter.count = 10;
-console.log(counter.count); // Outputs: 10
+*/
 
-try {
-  counter.count = 8; // Throws an error
-} catch (e) {
-  console.error(e.message); // Outputs: Cannot decrease count
+// Memory leak example
+function createLeak() {
+  const largeArray = new Array(1000000).fill("*");
+  return function () {
+    console.log(largeArray.length);
+  };
 }
 
+const leakyFunction = createLeak();
+
+// leakyFunction holds a reference to largeArray through closure
+// Even if we don't use leakyFunction, largeArray remains in memory
+
+// To prevent the leak, set leakyFunction to null when done
+leakyFunction = null;
+
 /*
+	Explanation Continued:
 
-  Explanation:
+	- The `createLeak` function creates a large array and 
+			returns a function that references it.
 
-  Object.defineProperty is used to define a getter and setter for count.
-  The setter enforces that count cannot decrease.
-  Attempting to set count to a lower value throws an error.
-  The actual value is stored in a private property _count.
+	- The returned function forms a closure over 'largeArray', 
+			preventing it from being garbage collected.
+
+	-If `leakyFunction` is not needed, setting it to null allows 
+		'largeArray' to be garbage collected.
+		
+	-Properly managing references is crucial to avoid memory leaks.
 
 */

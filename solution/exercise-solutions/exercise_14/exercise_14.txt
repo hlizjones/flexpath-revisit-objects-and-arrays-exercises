@@ -1,11 +1,11 @@
 
-Exercise 14: Enumerability and Property Attributes
+Exercise 14: Implementing Inheritance with Prototypes
 
 Problem:
 
-Create an object `user` with properties 'username', 'password', and 'email'. 
+Implement a simple class hierarchy without using ES6 classes. 
 
-Make 'password' non-enumerable so that it doesn't show up during 
-property enumeration or when converting the object to JSON. 
+Create a `Shape` constructor function with a method 'area' that returns 0. 
 
-Verify this behavior.
+Then, create a `Rectangle` constructor that inherits from `Shape` and 
+overrides the 'area' method to compute the area of a rectangle.

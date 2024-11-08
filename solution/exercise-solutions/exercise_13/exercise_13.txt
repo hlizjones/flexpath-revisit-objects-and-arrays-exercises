@@ -1,8 +1,11 @@
-Exercise 13: Memory Management and Garbage Collection
+
+Exercise 13: Enumerability and Property Attributes
 
 Problem:
 
-Explain how JavaScript's memory management works concerning the 
-stack and the heap. 
+Create an object `user` with properties 'username', 'password', and 'email'. 
 
-Provide an example where improper handling of closures can lead to memory leaks.
+Make 'password' non-enumerable so that it doesn't show up during 
+property enumeration or when converting the object to JSON. 
+
+Verify this behavior.

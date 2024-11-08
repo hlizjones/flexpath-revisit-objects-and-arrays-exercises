@@ -1,9 +1,9 @@
-Exercise 12: Using Object.defineProperty to Control Property Attributes
+
+Exercise 12: Memory Management and Garbage Collection
 
 Problem:
 
-Create an object `counter` with a property 'count' that cannot 
-be set to a value less than the current value. 
+Explain how JavaScript's memory management works concerning the 
+stack and the heap. 
 
-Use Object.defineProperty to enforce this constraint.
-
+Provide an example where improper handling of closures can lead to memory leaks.

@@ -1,14 +1,10 @@
 
-Exercise 11: Protecting Objects with Object.freeze and Object.seal
+Exercise 11: Using Object.defineProperty to Control Property Attributes
 
 Problem:
 
-Demonstrate the difference between Object.freeze and Object.seal. 
+Create an object `counter` with a property 'count' that cannot 
+be set to a value less than the current value. 
 
-Create an object `config` and:
+Use Object.defineProperty to enforce this constraint.
 
-1. Use Object.seal on it, then try to add, modify, and delete properties.
-2. Use Object.freeze on another object `settings`, and 
-	 attempt the same operations.
-
-Explain the outcomes.

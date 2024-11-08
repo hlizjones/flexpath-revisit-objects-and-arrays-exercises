@@ -1,34 +1,53 @@
-const userPrototype = {
-  sayHello: function () {
-    return `Hello, my name is ${this.name}`;
-  },
-};
+function BankAccount(initialBalance) {
+  let balance = initialBalance;
 
-function createUser(name) {
-  const user = Object.create(userPrototype);
-  user.name = name;
-  return user;
+  this.deposit = function (amount) {
+    if (amount > 0) {
+      balance += amount;
+    } else {
+      throw new Error("Invalid deposit amount");
+    }
+  };
+
+  this.withdraw = function (amount) {
+    if (amount > 0 && amount <= balance) {
+      balance -= amount;
+    } else {
+      throw new Error("Invalid withdrawal amount");
+    }
+  };
+
+  this.getBalance = function () {
+    return balance;
+  };
 }
 
 // Testing
-const user1 = createUser("Alice");
-const user2 = createUser("Bob");
+const account = new BankAccount(1000);
 
-console.log(user1.sayHello()); // Outputs: Hello, my name is Alice
-console.log(user2.sayHello()); // Outputs: Hello, my name is Bob
+account.deposit(500);
+console.log(account.getBalance()); // Outputs: 1500
 
-console.log(Object.getPrototypeOf(user1) === userPrototype); // Outputs: true
-console.log(Object.getPrototypeOf(user2) === userPrototype); // Outputs: true
+account.withdraw(200);
+console.log(account.getBalance()); // Outputs: 1300
+
+console.log(account.balance); // Outputs: undefined (balance is private)
+
+// Attempting to modify balance directly fails
+account.balance = 1000000;
+console.log(account.getBalance()); // Outputs: 1300 (balance unchanged)
 
 /*
+
   Explanation:
 
-  `userPrototype` contains methods shared by all users.
+  The balance variable is private to the BankAccount constructor function.
 
-  `createUser` creates a new object with userPrototype as its prototype.
+  Methods deposit, withdraw, and getBalance form closures over balance.
 
-  name is set directly on the object, while methods are shared.
+  The balance cannot be accessed or modified directly from outside.
   
-  This is memory-efficient as methods are not duplicated per instance.
+  This encapsulation protects the internal state of the object.
+
 
 */

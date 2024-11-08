@@ -1,5 +1,6 @@
 /*
 	Exercise 7: Combining Arrays with Spread Operator
+	
 	Problem:
 
 	Given two arrays:

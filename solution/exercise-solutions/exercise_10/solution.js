@@ -1,46 +1,54 @@
-/*
-
-	Exercise 10: Custom Iterators with Generators
-
-  Since we didn't cover this in the PluralSight videos, just view the solution
-  code below and modify it to better understand it.
-
-
-	Problem:
-
-	Create a custom iterator for an object that contains a collection of numbers. 
-	
-	The iterator should return each number multiplied by 2. 
-	
-	Use a generator function to implement the iterator protocol.
-
-*/
-
-// Solution below
-const numberCollection = {
-  numbers: [1, 2, 3, 4, 5],
-  *[Symbol.iterator]() {
-    for (const number of this.numbers) {
-      yield number * 2;
-    }
-  },
+const config = {
+  apiEndpoint: "https://api.example.com",
+  timeout: 5000,
 };
 
-// Testing
-for (const num of numberCollection) {
-  console.log(num); // Outputs: 2, 4, 6, 8, 10
-}
+Object.seal(config);
+
+// Attempting to add a new property
+config.newProperty = true; // Fails silently (or throws in strict mode)
+
+// Attempting to modify a property
+config.timeout = 3000; // Succeeds
+
+// Attempting to delete a property
+delete config.apiEndpoint; // Fails silently (or throws in strict mode)
+
+console.log(config);
+// Outputs:
+// { apiEndpoint: 'https://api.example.com', timeout: 3000 }
+
+const settings = {
+  theme: "dark",
+  version: 1.0,
+};
+
+Object.freeze(settings);
+
+// Attempting to add a new property
+settings.newSetting = "value"; // Fails silently
+
+// Attempting to modify a property
+settings.theme = "light"; // Fails silently
+
+// Attempting to delete a property
+delete settings.version; // Fails silently
+
+console.log(settings);
+// Outputs:
+// { theme: 'dark', version: 1.0 }
 
 /*
-
   Explanation:
 
-  The *[Symbol.iterator]() defines a generator function that 
-    implements the iterator protocol.
+  Object.seal prevents adding or deleting properties but 
+    allows modification of existing properties.
 
-  Using yield, it returns each number multiplied by 2.
+  Object.freeze prevents adding, deleting, or modifying properties.
 
-  This allows the object to be iterable with for...of.
-  
-  Generators provide an elegant way to create custom iterators.
+  Both methods make the object's property configuration non-configurable.
+
+  In non-strict mode, operations that fail do so silently; 
+    in strict mode, they throw errors.
+
 */

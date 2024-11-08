@@ -1,54 +1,40 @@
-const config = {
-  apiEndpoint: "https://api.example.com",
-  timeout: 5000,
+const counter = {
+  _count: 0,
 };
 
-Object.seal(config);
+Object.defineProperty(counter, "count", {
+  get() {
+    return this._count;
+  },
+  set(value) {
+    if (value >= this._count) {
+      this._count = value;
+    } else {
+      throw new Error("Cannot decrease count");
+    }
+  },
+});
 
-// Attempting to add a new property
-config.newProperty = true; // Fails silently (or throws in strict mode)
+// Testing
+counter.count = 5;
+console.log(counter.count); // Outputs: 5
 
-// Attempting to modify a property
-config.timeout = 3000; // Succeeds
+counter.count = 10;
+console.log(counter.count); // Outputs: 10
 
-// Attempting to delete a property
-delete config.apiEndpoint; // Fails silently (or throws in strict mode)
-
-console.log(config);
-// Outputs:
-// { apiEndpoint: 'https://api.example.com', timeout: 3000 }
-
-const settings = {
-  theme: "dark",
-  version: 1.0,
-};
-
-Object.freeze(settings);
-
-// Attempting to add a new property
-settings.newSetting = "value"; // Fails silently
-
-// Attempting to modify a property
-settings.theme = "light"; // Fails silently
-
-// Attempting to delete a property
-delete settings.version; // Fails silently
-
-console.log(settings);
-// Outputs:
-// { theme: 'dark', version: 1.0 }
+try {
+  counter.count = 8; // Throws an error
+} catch (e) {
+  console.error(e.message); // Outputs: Cannot decrease count
+}
 
 /*
+
   Explanation:
 
-  Object.seal prevents adding or deleting properties but 
-    allows modification of existing properties.
-
-  Object.freeze prevents adding, deleting, or modifying properties.
-
-  Both methods make the object's property configuration non-configurable.
-
-  In non-strict mode, operations that fail do so silently; 
-    in strict mode, they throw errors.
+  Object.defineProperty is used to define a getter and setter for count.
+  The setter enforces that count cannot decrease.
+  Attempting to set count to a lower value throws an error.
+  The actual value is stored in a private property _count.
 
 */

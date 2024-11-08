@@ -1,37 +1,34 @@
-const data = {};
+const userPrototype = {
+  sayHello: function () {
+    return `Hello, my name is ${this.name}`;
+  },
+};
 
-Object.defineProperty(data, "items", {
-  value: [],
-  writable: false,
-  configurable: false,
-  enumerable: true,
-});
+function createUser(name) {
+  const user = Object.create(userPrototype);
+  user.name = name;
+  return user;
+}
 
 // Testing
+const user1 = createUser("Alice");
+const user2 = createUser("Bob");
 
-// Attempting to reassign items
-data.items = [1, 2, 3]; // Fails silently (or throws in strict mode)
+console.log(user1.sayHello()); // Outputs: Hello, my name is Alice
+console.log(user2.sayHello()); // Outputs: Hello, my name is Bob
 
-// Modifying the content of items
-data.items.push(1);
-data.items.push(2);
-
-console.log(data.items); // Outputs: [1, 2]
-
-// Attempting to delete items
-delete data.items; // Fails silently
-
-console.log(data.items); // Still Outputs: [1, 2]
+console.log(Object.getPrototypeOf(user1) === userPrototype); // Outputs: true
+console.log(Object.getPrototypeOf(user2) === userPrototype); // Outputs: true
 
 /*
   Explanation:
 
-  `writable: false` prevents reassignment of data.items.
+  `userPrototype` contains methods shared by all users.
 
-  `configurable: false` prevents deletion of data.items.
+  `createUser` creates a new object with userPrototype as its prototype.
 
-  Since the value is an array, its contents can still be modified.
+  name is set directly on the object, while methods are shared.
   
-  This allows controlled mutability.
+  This is memory-efficient as methods are not duplicated per instance.
 
 */

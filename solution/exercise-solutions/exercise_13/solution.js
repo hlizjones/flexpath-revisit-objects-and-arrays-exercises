@@ -1,43 +1,28 @@
-/*
-	Explanation:
+const user = {
+  username: "john_doe",
+  password: "secret",
+  email: "john@example.com",
+};
 
-	Stack: 
-		Used for static memory allocation and 
-		execution context (primitive values and function calls).
+Object.defineProperty(user, "password", {
+  enumerable: false,
+});
 
-	Heap: 
-		Used for dynamic memory allocation (objects, arrays, functions).
-
-*/
-
-// Memory leak example
-function createLeak() {
-  const largeArray = new Array(1000000).fill("*");
-  return function () {
-    console.log(largeArray.length);
-  };
+// Enumerating properties
+for (let key in user) {
+  console.log(key); // Outputs: username, email
 }
 
-const leakyFunction = createLeak();
-
-// leakyFunction holds a reference to largeArray through closure
-// Even if we don't use leakyFunction, largeArray remains in memory
-
-// To prevent the leak, set leakyFunction to null when done
-leakyFunction = null;
+// Converting to JSON
+console.log(JSON.stringify(user));
+// Outputs: {"username":"john_doe","email":"john@example.com"}
 
 /*
-	Explanation Continued:
+  Explanation:
 
-	- The `createLeak` function creates a large array and 
-			returns a function that references it.
-
-	- The returned function forms a closure over 'largeArray', 
-			preventing it from being garbage collected.
-
-	-If `leakyFunction` is not needed, setting it to null allows 
-		'largeArray' to be garbage collected.
-		
-	-Properly managing references is crucial to avoid memory leaks.
+  Object.defineProperty is used to set enumerable: false on password.
+  Non-enumerable properties do not show up in for...in loops.
+  JSON.stringify ignores non-enumerable properties.
+  This is useful for hiding sensitive information during object serialization.
 
 */

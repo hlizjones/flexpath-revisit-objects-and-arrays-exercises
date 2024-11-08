@@ -1,47 +1,37 @@
-function Shape() {}
+const data = {};
 
-Shape.prototype.area = function () {
-  return 0;
-};
-
-function Rectangle(width, height) {
-  this.width = width;
-  this.height = height;
-}
-
-// Inherit from Shape
-Rectangle.prototype = Object.create(Shape.prototype);
-Rectangle.prototype.constructor = Rectangle;
-
-Rectangle.prototype.area = function () {
-  return this.width * this.height;
-};
+Object.defineProperty(data, "items", {
+  value: [],
+  writable: false,
+  configurable: false,
+  enumerable: true,
+});
 
 // Testing
-const shape = new Shape();
-console.log(shape.area()); // Outputs: 0
 
-const rectangle = new Rectangle(5, 10);
-console.log(rectangle.area()); // Outputs: 50
+// Attempting to reassign items
+data.items = [1, 2, 3]; // Fails silently (or throws in strict mode)
 
-console.log(rectangle instanceof Rectangle); // Outputs: true
-console.log(rectangle instanceof Shape); // Outputs: true
+// Modifying the content of items
+data.items.push(1);
+data.items.push(2);
+
+console.log(data.items); // Outputs: [1, 2]
+
+// Attempting to delete items
+delete data.items; // Fails silently
+
+console.log(data.items); // Still Outputs: [1, 2]
 
 /*
   Explanation:
 
-  Shape is a constructor function with an area method.
+  `writable: false` prevents reassignment of data.items.
 
-  Rectangle constructor initializes width and height.
+  `configurable: false` prevents deletion of data.items.
 
-  Rectangle.prototype is set to a new object created from 
-    Shape.prototype, establishing inheritance.
-
-  The constructor property is reset to Rectangle after prototype chaining.
-
-  The area method is overridden in Rectangle.
-
-  instanceof checks confirm that rectangle is an 
-    instance of both Rectangle and Shape.
+  Since the value is an array, its contents can still be modified.
+  
+  This allows controlled mutability.
 
 */

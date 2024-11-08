@@ -1,9 +1,12 @@
 
-Exercise 16: Customizing Property Descriptors
+Exercise 16: Advanced Use of Object.create and Prototypes
 
 Problem:
 
-Create an object `data` with a property 'items' that is an array. 
+Create a function `createUser` that returns an object with a 
+'name' property and a method `sayHello`. 
 
-Use Object.defineProperty to make 'items' read-only and prevent it from 
-being deleted, but allow the array's content to be modified.
+Use Object.create to set the prototype of the returned object to a 
+shared prototype object. 
+
+Demonstrate that multiple users share the same prototype.

@@ -1,28 +1,47 @@
-const user = {
-  username: "john_doe",
-  password: "secret",
-  email: "john@example.com",
+function Shape() {}
+
+Shape.prototype.area = function () {
+  return 0;
 };
 
-Object.defineProperty(user, "password", {
-  enumerable: false,
-});
-
-// Enumerating properties
-for (let key in user) {
-  console.log(key); // Outputs: username, email
+function Rectangle(width, height) {
+  this.width = width;
+  this.height = height;
 }
 
-// Converting to JSON
-console.log(JSON.stringify(user));
-// Outputs: {"username":"john_doe","email":"john@example.com"}
+// Inherit from Shape
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+
+Rectangle.prototype.area = function () {
+  return this.width * this.height;
+};
+
+// Testing
+const shape = new Shape();
+console.log(shape.area()); // Outputs: 0
+
+const rectangle = new Rectangle(5, 10);
+console.log(rectangle.area()); // Outputs: 50
+
+console.log(rectangle instanceof Rectangle); // Outputs: true
+console.log(rectangle instanceof Shape); // Outputs: true
 
 /*
   Explanation:
 
-  Object.defineProperty is used to set enumerable: false on password.
-  Non-enumerable properties do not show up in for...in loops.
-  JSON.stringify ignores non-enumerable properties.
-  This is useful for hiding sensitive information during object serialization.
+  Shape is a constructor function with an area method.
+
+  Rectangle constructor initializes width and height.
+
+  Rectangle.prototype is set to a new object created from 
+    Shape.prototype, establishing inheritance.
+
+  The constructor property is reset to Rectangle after prototype chaining.
+
+  The area method is overridden in Rectangle.
+
+  instanceof checks confirm that rectangle is an 
+    instance of both Rectangle and Shape.
 
 */

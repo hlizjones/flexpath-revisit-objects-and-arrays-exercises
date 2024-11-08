@@ -1,3 +1,4 @@
+
 Exercise 4: Using Prototypes to Extend Built-in Objects
 
 Problem:
