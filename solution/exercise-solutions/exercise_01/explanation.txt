@@ -1,7 +1,0 @@
-
-Explanation:
-
-Object.defineProperty is used to add getFullName to person.
-The property is set to non-writable, non-configurable, and non-enumerable.
-Attempts to modify or delete getFullName will fail silently (or throw in strict mode).
-Non-enumerable properties do not show up in for...in loops.

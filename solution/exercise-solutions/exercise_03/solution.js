@@ -50,3 +50,19 @@ console.log(clone);
 //   hobbies: ['reading', 'gaming', 'chess'],
 //   address: { city: 'Chessboard' }
 // }
+
+/*
+
+  Explanation:
+
+  The deepClone function checks if the value is an object or array.
+
+  It recursively copies each property.
+
+  This ensures that nested objects and arrays are also cloned, not 
+  just the top-level object.
+
+  Modifying the clone does not affect the original, demonstrating a deep copy.
+
+
+*/

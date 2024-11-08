@@ -3,9 +3,9 @@ Exercise 1: Advanced Object Creation and Property Manipulation
 
 Problem:
 
-Create an object person with properties firstName and lastName. 
+Create an object `person` with properties 'firstName' and 'lastName'. 
 
-Then, without modifying the original object, add a method getFullName that 
+Then, without modifying the original object, add a method 'getFullName' that 
 returns the full name of the person. 
 
-Ensure that getFullName is non-enumerable, and cannot be modified or deleted.
+Ensure that 'getFullName' is non-enumerable, and cannot be modified or deleted.

@@ -26,3 +26,15 @@ clone.push(7);
 // Original remains unchanged
 console.log(combined); // Outputs: [1, 2, 3, 4, 5, 6]
 console.log(clone); // Outputs: [1, 2, 3, 4, 5, 6, 7]
+
+/*
+
+	Explanation:
+
+	The spread operator ... expands the elements of an array.
+	Combining arrays with spread creates a new array.
+	Cloning with spread creates a shallow copy.
+	Since the array contains primitive values, shallow copy suffices.
+	Modifying the clone does not affect the original array.
+
+*/

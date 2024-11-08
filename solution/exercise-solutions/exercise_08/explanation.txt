@@ -1,6 +1,0 @@
-Explanation:
-
-Shallow copying with spread operator copies the array but not the nested objects (they are references).
-Modifying a nested object in the shallow copy affects the original array.
-Deep copying is done by mapping each object and creating a new object with spread {...obj}.
-Modifications in the deep copy do not affect the original array.
