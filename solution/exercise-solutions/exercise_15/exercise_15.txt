@@ -1,9 +1,10 @@
 Exercise 15: Implementing Inheritance with Prototypes
+
 Problem:
 
 Implement a simple class hierarchy without using ES6 classes. 
 
-Create a Shape constructor function with a method area that returns 0. 
+Create a `Shape` constructor function with a method 'area' that returns 0. 
 
-Then, create a Rectangle constructor that inherits from Shape and 
-overrides the area method to compute the area of a rectangle.
+Then, create a `Rectangle` constructor that inherits from `Shape` and 
+overrides the 'area' method to compute the area of a rectangle.

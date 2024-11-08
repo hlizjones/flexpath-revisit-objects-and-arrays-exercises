@@ -1,9 +1,0 @@
-
-Exercise 18: Implementing a Custom Array Method
-
-Problem:
-
-Implement a custom array method myMap that mimics the 
-behavior of the built-in Array.prototype.map method. 
-
-Do not use the built-in map method in your implementation.

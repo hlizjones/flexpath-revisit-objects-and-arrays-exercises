@@ -1,18 +1,38 @@
-Array.prototype.myMap = function (callback, thisArg) {
-  const result = [];
-  for (let i = 0; i < this.length; i++) {
-    // Check if the element exists to handle sparse arrays
-    if (i in this) {
-      result[i] = callback.call(thisArg, this[i], i, this);
+function BankAccount(initialBalance) {
+  let balance = initialBalance;
+
+  this.deposit = function (amount) {
+    if (amount > 0) {
+      balance += amount;
+    } else {
+      throw new Error("Invalid deposit amount");
     }
-  }
-  return result;
-};
+  };
+
+  this.withdraw = function (amount) {
+    if (amount > 0 && amount <= balance) {
+      balance -= amount;
+    } else {
+      throw new Error("Invalid withdrawal amount");
+    }
+  };
+
+  this.getBalance = function () {
+    return balance;
+  };
+}
 
 // Testing
-const numbers = [1, 2, 3];
-const doubled = numbers.myMap(function (number) {
-  return number * 2;
-});
+const account = new BankAccount(1000);
 
-console.log(doubled); // Outputs: [2, 4, 6]
+account.deposit(500);
+console.log(account.getBalance()); // Outputs: 1500
+
+account.withdraw(200);
+console.log(account.getBalance()); // Outputs: 1300
+
+console.log(account.balance); // Outputs: undefined (balance is private)
+
+// Attempting to modify balance directly fails
+account.balance = 1000000;
+console.log(account.getBalance()); // Outputs: 1300 (balance unchanged)

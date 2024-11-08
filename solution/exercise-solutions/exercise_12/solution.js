@@ -27,3 +27,14 @@ try {
 } catch (e) {
   console.error(e.message); // Outputs: Cannot decrease count
 }
+
+/*
+
+  Explanation:
+
+  Object.defineProperty is used to define a getter and setter for count.
+  The setter enforces that count cannot decrease.
+  Attempting to set count to a lower value throws an error.
+  The actual value is stored in a private property _count.
+
+*/

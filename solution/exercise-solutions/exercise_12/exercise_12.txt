@@ -2,7 +2,7 @@ Exercise 12: Using Object.defineProperty to Control Property Attributes
 
 Problem:
 
-Create an object counter with a property count that cannot 
+Create an object `counter` with a property 'count' that cannot 
 be set to a value less than the current value. 
 
 Use Object.defineProperty to enforce this constraint.

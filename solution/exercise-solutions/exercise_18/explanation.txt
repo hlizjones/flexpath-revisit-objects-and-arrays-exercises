@@ -1,6 +1,6 @@
 Explanation:
 
-myMap is added to Array.prototype so it can be used on any array.
-The method iterates over the array, applying the callback to each element.
-Handles the optional thisArg parameter.
-Checks for i in this to handle sparse arrays (arrays with missing elements).
+The balance variable is private to the BankAccount constructor function.
+Methods deposit, withdraw, and getBalance form closures over balance.
+The balance cannot be accessed or modified directly from outside.
+This encapsulation protects the internal state of the object.

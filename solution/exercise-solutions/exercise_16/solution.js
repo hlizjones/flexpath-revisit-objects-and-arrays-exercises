@@ -22,3 +22,16 @@ console.log(data.items); // Outputs: [1, 2]
 delete data.items; // Fails silently
 
 console.log(data.items); // Still Outputs: [1, 2]
+
+/*
+  Explanation:
+
+  `writable: false` prevents reassignment of data.items.
+
+  `configurable: false` prevents deletion of data.items.
+
+  Since the value is an array, its contents can still be modified.
+  
+  This allows controlled mutability.
+
+*/
