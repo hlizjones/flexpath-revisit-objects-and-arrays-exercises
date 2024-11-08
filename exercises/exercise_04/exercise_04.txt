@@ -1,0 +1,10 @@
+
+Exercise 4: Using Prototypes to Extend Built-in Objects
+
+Problem:
+
+Extend the built-in `Array` prototype by adding a method 'last' that 
+returns the last element of an array. 
+
+Ensure that your method does not interfere with the 
+built-in `Array` properties and is non-enumerable.

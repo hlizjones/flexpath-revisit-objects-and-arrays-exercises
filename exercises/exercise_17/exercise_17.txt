@@ -1,0 +1,9 @@
+Exercise 17: Protecting Object Properties with Closures
+
+Problem:
+
+Create a constructor function `BankAccount` that takes an initial balance. 
+
+Provide methods 'deposit' and 'withdraw' to interact with this balance. 
+
+Use closures to protect the balance from being accessed or modified directly.

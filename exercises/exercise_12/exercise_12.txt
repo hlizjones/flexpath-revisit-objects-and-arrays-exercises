@@ -1,0 +1,9 @@
+
+Exercise 12: Memory Management and Garbage Collection
+
+Problem:
+
+Explain how JavaScript's memory management works concerning the 
+stack and the heap. 
+
+Provide an example where improper handling of closures can lead to memory leaks.
