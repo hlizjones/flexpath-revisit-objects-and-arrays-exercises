@@ -1,36 +1,47 @@
 
 # flexpath-revisit-objects-and-arrays-exercises
 
-## [Getting Started]
-
-- include gifs here
-- Include relevant steps to run exercise files or start the app
-- "Open the file located at exercise-repo-name/whatever in VS Code"
-
-- Also, include instructions on how to open their terminal in 
-
-- WHILE DOING THIS, LOOK OUT FOR ANY POTENTIAL WINDOWS FILE PATH ISSUES in exercises
-
-
 ## Exercise overview
 
-Give quick overview about context of exercises and their intention
+Now that you have the basics of JavaScript and working with JavaScript in the web
+down, we wanted to revisit some fundamental concepts and give you a deeper understanding
+of how to use them effectively in your programs.
+
+These exercises will take a closer look at objects and arrays in JavaScript.
 
 
-## Specific exercises listed in numbered order
+## Getting Started
 
-Add disclaimer if exercises are stored inside of specific files as comments
 
-Also, for a plain text reference, theres always the `EXERCISE-INSTRUCTIONS` files to pop open
+1. Using Visual Studio Code, open the folder `flexpath-revisit-objects-and-arrays-exercises` 
+   wherever you saved it on your device. 
+2. Then open the `flexpath-revisit-objects-and-arrays-exercises/exercises` folder. 
+   Inside are a collection of folders for each exercise. Exercise instructions are 
+   provided to you in .txt files in these folders.
+3. To test your code, you will open up your terminal, and navigate to the specific `exercise_[number]`
+   folder inside of the larger `exercises/` folder where you are working in, using the
+   change directory command `cd`.
+4. You will then run the command `node [filename].js` to run whichever file
+   in the folder you are working with, replacing `[filename]` in the command
+   with the file's actual name.
 
-To answer questions that don't require coding, please create a file in the repo named 
-[exercise_number_answer].txt.
+Exercise solutions are in the `/solution` folder
 
-For example, if in one of the exercise repos question 13 just asked a question to explain a programming concept, store your answer inside of a new file named exercise_13_answer.txt.
 
-## Testing / Verification
+**Note**:
 
-Include relevant details here about where solution files are stored
+For the first few exercises in this repository, we have included example 
+JS code you can use to test your solutions.
+
+But, after the first few exercises we don't provide it anymore.
+
+As a Software Developer, you will have to both solve a problem given to you and 
+come up with code on your own to test that your solution to that problem actually works. 
+
+This is an important skill to build, and it is vital to being able to do this job.
+
+Therefore, we want you to start getting comfortable writing JavaScript code to 
+test that your solutions work as intended.
 
 &nbsp;
 ---
