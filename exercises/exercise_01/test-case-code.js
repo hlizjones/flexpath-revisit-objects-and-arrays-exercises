@@ -1,3 +1,15 @@
+const person = {
+  firstName: "John",
+  lastName: "Doe",
+  getFullName() { return this.firstName + " " + this.lastName},
+ }
+
+ Object.defineProperty(person, "getFullName", {
+  writable: false,
+  configurable: false,
+  enumerable: false
+ })
+
 // When ready, use the code below for testing
 console.log(person.getFullName()); // Outputs: John Doe
 
@@ -5,7 +17,7 @@ console.log(person.getFullName()); // Outputs: John Doe
 person.getFullName = function () {
   return "Modified";
 }; // Does not change
-delete person.getFullName; // Cannot delete
+// delete person.getFullName; // Cannot delete
 console.log(person.getFullName()); // Still outputs: John Doe
 
 // Enumerating properties

@@ -12,3 +12,4 @@ Then, create an object `dog` that uses `animal` as its prototype.
 Add a 'speak' method to `dog` that returns the string 'Woof!'. 
 
 Demonstrate how `dog` inherits from `animal` and how method overriding works.
+

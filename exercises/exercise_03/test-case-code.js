@@ -1,3 +1,25 @@
+// function deepClone(obj) {
+//   return JSON.parse(JSON.stringify(obj))
+// }
+
+function deepClone(obj) {
+  if (typeof obj !== "object" || obj === null) return obj;
+
+  let newObj;
+  
+  if (Array.isArray(obj)) {
+    newObj = [];
+  } else {
+    newObj = {};
+  }
+
+  for (let key in obj) {
+    let value = obj[key]
+    newObj[key] = deepClone(value)
+  }
+  return newObj;
+}
+
 // When ready, use the code below for testing
 const original = {
   name: "Alice",

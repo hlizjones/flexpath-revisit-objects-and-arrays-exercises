@@ -19,3 +19,23 @@ const transactions = [
 	
 	Also, categorize the transactions into deposits and withdrawals.
 */
+
+let finalBalance = transactions.reduce(function(amount, currentValue){
+if (currentValue.type === "deposit") {
+	amount += currentValue.amount
+} else if (currentValue.type === "withdrawal") {
+	amount -= currentValue.amount
+} return amount
+}, 0)
+
+console.log(finalBalance)
+
+let transactionsTypes = transactions.reduce(function(accumulator, currentValue){
+	if (!accumulator[currentValue.type]) {
+		accumulator[currentValue.type] = []
+	};
+	accumulator[currentValue.type].push(currentValue.amount);
+	return accumulator;
+}, {})
+
+console.log(transactionsTypes)

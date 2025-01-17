@@ -7,3 +7,16 @@ Explain how JavaScript's memory management works concerning the
 stack and the heap. 
 
 Provide an example where improper handling of closures can lead to memory leaks.
+
+-Stack: static, limited size space (set by browser or Node.js) -> quick to access but limited size overall and size of slots for data
+-Heap: dynamic memory store -> more complex to access but can grow to imcompass large things w/o defined size that will grow when app runs -> slots don't have specific size
+-Objects have to go in heap bc they would outgrow stack slots
+    -the name of the variable (ie. const myCourse) is stored in stack
+    -the object itself is stored in the heap
+    -a reference connecting the gap a reference to the object is stored in the stack with the name 
+    -> when variable w/ name of object is called from the stack, js uses reference to find the actual object in the heap
+
+-Closures happen when a function inside another functions retains all the variables outside of itself that it needs to function
+    -it retains variables from the outer function even when that function is done executing
+    -the inner function creats a "closure" over  the outer function
+    -if the garbagecollector is not told to collect these variables, they will remain stored in the heap and take up memory bc the function is holding on to them in case its called again and needs them

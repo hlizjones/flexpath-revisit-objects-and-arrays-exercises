@@ -14,3 +14,12 @@ const array2 = [4, 5, 6];
 	Then, create a deep clone of `combined` and verify that modifying the 
 	clone does not affect the original.
 */
+
+const newArr = [...array1, ...array2]
+console.log(newArr)
+
+let clonedArr = [...newArr]
+
+console.log(clonedArr)
+
+console.log(newArr === clonedArr)

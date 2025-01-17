@@ -1,0 +1,289 @@
+Objects
+    Object Definition
+        -Containers for other datatypes
+            ex: User object contains id (number), username (string) -> these are properties
+        -Passed by reference
+            -Name of object points to address in memory
+        -Link to a prototype
+
+    Creating Objects
+        -Object Literal Syntax:
+            const myBook = {
+                title: "Throne of Glass" -> key:value
+                "book author": "SJM" -> keys in quotes if there is a space or hyphen in key name
+                -> creating collection of proerties to fulfill a prupose in my code
+            }
+
+        -"new" Syntax
+            const myDate = new Date();
+                -> there is a data type that exists called "dat" with functionality attached to it and I want to create my own and use it
+                -> instance of unchanging blueprint with functionality we want to use
+
+            -Object.create(prototype)
+                ex: Object.create(Object.protoype) or Object.create(Date.protoype)
+                -can use to create own prototype
+                    const newCourse = Object.create(courseProto)
+
+    Prototypes:
+        -All objects link to a prototype -> a blueprint with functionalities to use
+        -Many objects are predefined for you
+        -Objects link to prototypes which define their behavior (the protoypes make them behave as the object they are )
+        -Protoype Chain:
+            When calling a prorty on an object -> JS looks at object itself and then goes up the protoype chain and uses first matching prototype found 
+                ex: new Date() starts with the new date object itself then goes to Date's prototype then Object's prototype
+            -Object.prototype is at end of property chain
+
+
+        -Objects created w/ object literal syntax links to Object's prototype
+
+    CRUD: Create, red,update, delete -> four types of operations you can do on data
+
+    Properties:
+        -Don't define 
+        Creating/Updating:
+            -Am I creating an object that will be used one? -> add properties into object literal syntax
+            -A I reusing an object that will be used again and again throughout a project -> create a new prototype w/ properties
+                ex: const contentBlock - Object.create(contentBlockPrototype)
+            -Create properties w/ dot notation
+                ex: contentBlock.description
+            -Created properties w/ bracjet notation -> used for illegal variable names (space or special character) -> can also compute (ex: doing ["info" + 1] in loop)
+                ex: contentBlock[description]
+
+        -Accessing:
+            -Use dot or bracket -> same as when created
+            -.hasOwn("propertyName") -> returns true if object itself has property w/ given name -> will not go up the chain 
+            -"propertyName" in objectName -> returns true if object itself has property w/ given name -> check entire chain
+
+        -Deleting:
+            -delete objectName.propertyName
+            -delete objectName[propertyName]
+
+    Anatomy of a Property:
+        -Can be owned by property or inherited from prototype
+        -Name: name
+        -Value: what property is set euqal to
+        -Writable: fale means can't be edited or deleted
+        -Configurable: can be edited not deleted, prevents attributes from being changes (ie can't change writable, configurable, enumerable)
+        -Enumerable: means able to be counted, one by one
+            -prevents a porerty from appearing when looping through properties in an object
+
+        -Writable, configurable, and Enumerable are boolean, default true
+            Object.defineProperty(object, "property", {
+                writable: false,
+                configurable: false
+            });
+
+        -Object.freeze -> writable and configurable to false and prevents extensions -> can't be edited
+        -Object.seal -> configurable to false and prevents extensions -> can still be edited
+        -Object.preventExtensions -> prevents extensions, can't change attribute(name, value, writable, configurable, enumerable)
+
+    Iterate through Properties:
+        -for...in loop returns enumerable and inherited
+        -Object.keys(object) returns owned and enumerable
+        -Object.getOwnPropertyNames returns owns proerties (enumerable and enumerable)
+
+    -Stack vs Heap
+        -Stack: limited size space (set by browser or Node.js) -> quick to access but limited size overall and size of slots for data
+        -Heap: dynamic memory store -> more complex to access but can grow to imcompass large things w/o defined size that will grow when app runs -> slots don't have specific size
+        -Objects have to go in heap bc they would outgrow stack slots
+            -the name of the variable (ie. const myCourse) is stored in stack
+            -the object itself is stored in the heap
+            -a reference connecting the gap a reference to the object is stored in the stack with the name -> when variable w/ name of object is called from the stack, js uses reference to find the actual object in the heap
+            -const doesn't "freeze" object, it only freezes the reference to the heap -> object can be changed in the heap bc the ference isn't changing in the stack
+                -this is why if obj1=obj2 and obj2 is changed, obj1 will also be changed bc they're both referencing the same spot on the heap
+
+    Cloning Objects:
+        -Object.assign(targetObject, sourceObject) -> copies enumerable and own properties
+        -Spread operator new object = { ...oldObject} -> spread operate returns all of the enumerable own properties
+        -Subobjects have to be handled separately (deep copying) bc new object will still be referencing same subobject that old object is referencing
+
+    Functions as Properties:
+        -Allows functions to be accessed in mutl places when tied to object
+        -let object = {
+            newFunc(): {//function code} -> old syntax: newFunc: function() {//function code}
+            }
+
+    Object Scope:
+        -"this" keyword ferences a pativular instance of an object
+            -used within an object to refer to other properties of that object -> whetever object that the function was called on
+            this.title = "Edited Titled"
+        
+        -object as function parameter
+            -When JS uses a primitive as a parameter, it copies that data into the function only to be used/changed within the scope of the function while leaving the original primitive as is 
+            -relationship reference btw variable and its object behaves like a primitive value
+                -copies the variable and its reference and uses that copy inside the function 
+                    -> changing the reference won't last outside scope of function 
+                    -> but using the reference to make changes to the heap (ie changing properties) will make permanent changes bc objects are passed by reference
+
+    -Object Wrappers of Primitives:
+        -objects wrappers give object functionality to Primitives
+        -when primitive is wrapped, js creates an new object on heap, calls the function (ex .toFixed for number.toFixed(2)), returns the value to the primitive, and then deletes the object 
+
+Arrays
+    -Arrays are objects -> keys are index numbers and values are anything
+        Similarities
+            -contain properties
+            -access properties w/ bracket notation-array functiosn come from their protoype
+            -Can create new arrays in many same ways as object
+        Differences
+            -no dot notation
+            -special array.prototypes functions
+            -index based properties
+    
+    -Creating Arrays:
+        -> creates new object that links to Array.prototype
+        
+        -cont arr = new Array();  
+            -> () calls protoypes constructor function, could pass values in 
+                -no values is empty array []
+                -values is array with values
+                    new Array(2,3,4) will be [2,3,4]
+                -one number passed in creates an array of that number
+                    new Array(4) will create a array with 4 blank spots
+        -const arr = [] array literal syntax
+            -passing in just one number will create an array w/ that number in the first spot
+        -const arr = Object.create(Array.prototype)
+        -const arr = Array.of()
+                -same as new Array() but passing in just one number will create an array w/ that number in the first spot
+        -const arr = Array.from
+            -> changes array-like things (iterable things) into an array
+                ex: strings, nodelists, htmlcollections
+                -> change to array to use all array functionality on array-like object 
+
+    -Identifying Arrays
+        -instanceof -> checks if object links to a specific object prototype
+            ex: currentCourse. content = [ ] ;
+                currentCourse.content instanceof Array; //true
+                currentCourse.content instanceof Object; //true bc array.protoype links to object.prototype
+        -Object.isPrototypeOf -> checks if object links to a specific object prototype -> also check down chain
+            Array.prototype.isPrototypeOf(//object you are checking);
+        -Array.isArray -> returns true only if direct object you are checking is an array
+            ex: Array.isArray(//object you are checking)
+
+    -Adding and Accessing Arrays:
+        -Arrays use indexes 
+            array[2]
+        -LAST IN, FIRST OUT (LIFO)
+            arr.push adds to next slot in array
+            arr.pop takes last item off the Stack
+        -FIRST IN, FIRST OUT (FIFO)
+            arr.shift -> removes first item in array so every item in arr shifts one index foward (item in idex 1 becomes item in index 0)
+            arr.unshift
+
+    -Cutting Up Arrays:
+        .slice -> returns items from array but does not affect original array
+            content.slice(startIndex, endIndex) -> endIndex is optional and w/o will assume you mean until end of arr -> can use negative index (-1 is one from end)
+        .splice -> cuts out items from array and brings the remaining items together
+            content.splice(startIndex, cutAmount, itemsToAdd) -> itemsToAdd optional
+
+    -Combing Arrays:
+        arr1.concat(arr2) -> can take as many parameters as you want
+        spread syntax -> "unpacks" an iterable object
+            YES -> part1 = [...part1, ...part2] -> unpacks items in both arrays and puts them into one array
+            NO -> part1 = [part1, part2] -> this would create two arrays in one array
+
+    -Cloning Arrays:
+        -Option 1) Can use spread operator to deep copy arrays w/ Subobjects
+        -Option 2) Use JSON.stringify(turns objcet into json) and JSON. parse(turns json into object)
+                        -> serializes properties into plain text aka loses reference
+                        -> JSON.parse(JSON.stringify(exampleArrayToCopy))
+                            -> no link to any prototype except for Object.prototype
+
+    -Sorting Arrays:
+        array.reverse()
+        array.toReversed() -> copies array and reverses it
+        array.sort() -> takes in comparisonFunction as its argument
+            comparisonFunction = function(a,b) { -> must be two arguments passed in that you will compare to each other
+                if (a.title > b.title) return 1; -> under what circumstances should a be sorted above b and vice versa
+                if (b.title > a.title) return -1; -> 1 is a should be sorted higher, -1 b should be sorted higher, 0 is equal
+                return 0;
+                } ;
+
+            -Example: Strings later in alphabetical order are larger than strings earlier in alphabet
+                const comparisonFunction = function(a, b) {
+                if (a.title < b.title) return 1; //if a is smaller (earlier in alphabet) than b, a goes before b
+                if (b.title < a.title) return -1; //if b is smaller (earlier in alphabet) than b, b goes before a
+                return 0; //if neither return 0 bc everything has to return a numerical value
+
+                };
+
+            -Example: Longest to shortest
+                const comparisonFunction = function(a, b) {
+                if (a.length > b.length) return 1; 
+                if (b.length > a.length) return -1; 
+                return 0; 
+                };
+
+        array.toSorted() -> copies arrays before sorting
+
+    -Sparse Arrays:
+        -Sparse array is an array with empty indexes
+        -BAD
+
+    -Maps, Sets, and Types Arrays:
+        -Maps: keys (can be anything) and values (can be anything), order follows insertion order
+        -Sets: unique values only (can be anything), NO KEYS, order follows insertion order
+        -Typed Array: keys (must be index) and values (values in specific format), can be any order
+
+Array Iteration
+
+    -For Loops:
+        Aren't a great choice -> have to discribe array logic each time & chance to skip over array element
+        -For ...of  is better fit for for loops
+            -Returns values (For in returns keys/indexes)
+            -Use for (let [key, value] of array) to access index
+            -Can use break or continue
+        -Array.forEach best fit of for loops
+            -Use arr.forEach((element, index) => {} ) to access index
+            -Skips undefined elements
+            -Works w/ functional paradigm 
+
+    Summarizing Array Down to Single Value:
+        -join -> calls toString on every element in array returning one long string
+            -can pass in separator as argument (ex: array.join(",")) aeprataes each element w/ seperator
+        -some -> returns true if at least one elements matches condition
+        -every -> returns true if all elements matches condition
+            Both some and every take in function as aargument to describe condition
+        -reduce -> calculates number based on array
+            takes in function w/ 2 arguments accumlator -> holds value of culculation so far/as we calculate & currentValue -> value of current iteration
+            reduce(accumaltor, curentValue, indexValue) {
+                //function body 
+            }, accumlatorStart -> accumlatorStart and indexValue are optional
+        -reduceRight -> backward, accumulator starts at end of array
+
+    Searching Through Array:
+        -includes: returns boolean, true if array contains element -> obj will only return true if obj returns same reference (TIP: define element w/ named reference and then check for that reference)
+            -can take in optional second parameter of index to start Searching
+                array.includes(element, index)
+
+        -find: returns element itself you're searching for 
+            -takes in a function which contains a reference to the element you are checking
+                array.find(block => { return contentBlock.id == true})
+            -returns first element that returns true
+
+            findIndex: returns first index of element matching what searching for 
+
+            findLastIndex: returns last index of element matching what searching for
+
+        -filter: same structure as find creates shallow copy array w/ all matching elements 
+
+    Map and Functional JS:
+        -Chaining functions
+            Example: Works bc output of every function is an array; result of function (which is always an array) is passed into next function -> map function is key
+            
+                const renderNotebookForJsonBlocks = function(jsonBlocks) {
+                ...
+                jsonBlocks
+                .map (parseContentBlockJsonAsContentBlock)
+                .filter(filterByBookmarked)
+                .sort(sortByTitleAlphabeticallyDescending)
+                .map(generateNotebookHTMLForContentBlock)
+                .map (appendToNotebookDOM) ;
+                ...
+                }
+
+        -map: applies function to every element in an array and returns an array with the results
+
+
+
+    

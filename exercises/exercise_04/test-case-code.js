@@ -1,3 +1,8 @@
+Object.defineProperty(Array.prototype, "last", {
+  value: function() {return this[this.length - 1]},
+  enumerable: false
+});
+
 // When ready, use the code below for testing
 const numbers = [1, 2, 3, 4, 5];
 console.log(numbers.last()); // Outputs: 5
